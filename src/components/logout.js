@@ -5,7 +5,10 @@ import {
     Route,
     Link
   } from "react-router-dom"; 
-export default function Logout(){
+export default function Logout(){ 
+    const handleLogout = () =>{
+        window.localStorage.clear();
+    }
     return(
         <div>
              <div>
@@ -17,7 +20,7 @@ export default function Logout(){
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                         <li class="nav-item">
-                            <Link class="nav-link" to="/">Logout</Link>
+                            <Link class="nav-link" to="/" onClick={handleLogout}>Logout</Link>
                         </li>
                         
                         

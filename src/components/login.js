@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import  { Redirect } from 'react-router-dom'
 import { useHistory } from 'react-router-dom';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
 function Login(){  
     const [email,setEmail]=useState(""); 
     const [password,setPassword]=useState("");  
@@ -42,7 +48,13 @@ function Login(){
                 </div>
         
                 <button type="button" class="btn btn-secondary" onClick={handleOnclick}>submit</button>
-            </form>
+            </form> 
+            <div class="mb-3"> 
+            <h4>Task2</h4> 
+
+                <Link className='btn btn-danger'  to="/userdata">Click here</Link>
+
+            </div>
         </div>
     )
 } 
