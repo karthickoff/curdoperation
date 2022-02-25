@@ -1,7 +1,7 @@
-import Login from "./components/login";
 import ListData from "./components/listdata"; 
 import Userdetials from "./components/userdetials"; 
-import FullDetials from "./components/fulldetials";
+import FullDetials from "./components/fulldetials"; 
+import Home from "./components/home";
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,10 +13,11 @@ function App() {
   
     <Router>
         <div className="App"> 
+            
      
           <Switch>
            <Route exact path="/">
-             <Login/>
+             <Home/>
            </Route>
            <Route exact  path="/data">
              <ListData/>

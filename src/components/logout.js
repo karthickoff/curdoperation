@@ -13,9 +13,16 @@ export default function Logout(){
         <div>
              <div>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="#">Data Site</a>
+                    <a class="navbar-brand" href="#">Data Site</a> 
+                    <div className="menus">
+                    <Link className='btn btn-danger'  to="/userdata">Task2</Link> 
+                    <Link className='btn btn-danger'  to="/data">Task1</Link> 
+                    </div>
+                   
+                    
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon"></span> 
+                       
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">

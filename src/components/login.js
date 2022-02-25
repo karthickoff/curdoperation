@@ -7,6 +7,7 @@ import {
     Route,
     Link
   } from "react-router-dom";
+  import "../styles/login.css";
 function Login(){  
     const [email,setEmail]=useState(""); 
     const [password,setPassword]=useState("");  
@@ -34,9 +35,9 @@ function Login(){
     }
     return(
         <div className='container'> 
-            <div>
-                <h3>Login here</h3>
-            </div>
+            <div className='Loginarea'>
+                <h3 style={{textAlign:"center"}}>Login </h3>
+           
             <form>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -49,12 +50,8 @@ function Login(){
         
                 <button type="button" class="btn btn-secondary" onClick={handleOnclick}>submit</button>
             </form> 
-            <div class="mb-3"> 
-            <h4>Task2</h4> 
-
-                <Link className='btn btn-danger'  to="/userdata">Click here</Link>
-
             </div>
+            
         </div>
     )
 } 

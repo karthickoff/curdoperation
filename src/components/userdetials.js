@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"; 
 import { Link } from "react-router-dom";
+import Logout from "./logout";
 export default function Userdetials(){ 
     const [data,Setdata]=useState([]);
     useEffect(()=>{
@@ -44,7 +45,8 @@ newList.push(
 } 
 
     return(
-        <div>
+        <div> 
+          <Logout/>
           <h3>List of data </h3>
             <table class="table">
   <thead>
