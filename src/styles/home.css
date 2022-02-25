@@ -1,4 +1,9 @@
 *{
     /* background-color: #DADBBD; */
     overflow: hidden;
+} 
+.New-user{
+    position: absolute; 
+    top: 5%; 
+    left: 40%;
 }

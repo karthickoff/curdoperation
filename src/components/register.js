@@ -63,7 +63,7 @@ export default function Register(){
             setPasswordErr(false);
         } 
         console.log("error list",nameErr , emailFormatErr, passwordFormatErr);
-        if((!(nameErr && emailFormatErr && passwordFormatErr)) && (name && email && password)){
+        if(!passwordErr && !passwordFormatErr && !emailErr && !emailFormatErr && !nameErr && name && email && password ){
             swal('Registration','succesfully Done','success');
             const data ={
                 userName:name, 

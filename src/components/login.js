@@ -21,7 +21,8 @@ function Login(){
         else{
             setPassword(e.target.value)
         }
-    } 
+    }  
+    
     const handleOnclick =() =>{
        if(email =="karthickrvpm@gmail.com" && password=="1234"){
         history.push('/data');
@@ -48,7 +49,11 @@ function Login(){
                     <input type="password" class="form-control" id="exampleInputPassword1" name="password" value ={password} onChange={handleOnchange}/>
                 </div>
         
-                <button type="button" class="btn btn-secondary" onClick={handleOnclick}>submit</button>
+                <button type="button" class="btn btn-secondary" onClick={handleOnclick}>submit</button> 
+                <div>
+
+                </div>
+
             </form> 
             </div>
             
