@@ -1,7 +1,9 @@
 import ListData from "./components/listdata"; 
 import Userdetials from "./components/userdetials"; 
 import FullDetials from "./components/fulldetials"; 
-import Home from "./components/home";
+import Home from "./components/home"; 
+import Userinfo from "./components/userinfo";
+import Editinfo from "./components/edituserinfo";
 import {
   BrowserRouter as Router,
   Switch,
@@ -27,6 +29,12 @@ function App() {
            </Route>
            <Route exact  path="/fulluserdata">
             <FullDetials/>
+           </Route>
+           <Route exact  path="/userinfo">
+           <Userinfo/>
+           </Route>
+           <Route exact  path="/edituserinfo">
+           <Editinfo/>
            </Route>
 {/* 
           <Route exact path="/" element={<Login/>} />

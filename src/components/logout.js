@@ -5,9 +5,11 @@ import {
     Route,
     Link
   } from "react-router-dom"; 
+  import profile from "../images/user.png";
 export default function Logout(){ 
     const handleLogout = () =>{
-        window.localStorage.clear();
+        // user_detials
+        localStorage.removeItem('user_detials');
     }
     return(
         <div>
@@ -15,8 +17,8 @@ export default function Logout(){
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <a class="navbar-brand" href="#">Data Site</a> 
                     <div className="menus">
-                    <Link className='btn btn-danger'  to="/userdata">Task2</Link> 
                     <Link className='btn btn-danger'  to="/data">Task1</Link> 
+                    <Link className='btn btn-danger'  to="/userdata">Task2</Link> 
                     </div>
                    
                     
@@ -29,6 +31,12 @@ export default function Logout(){
                         <li class="nav-item">
                             <Link class="nav-link" to="/" onClick={handleLogout}>Logout</Link>
                         </li>
+                        <li class="nav-item">
+                           <Link to="/userinfo"><img src={profile} style={{width: "30px",height: "30px",marginTop:"3px"}} /></Link> 
+                        </li>
+                        
+
+
                         
                         
                         </ul>

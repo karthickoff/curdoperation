@@ -1,0 +1,17 @@
+.edit-area{
+    position: absolute;
+    top: 25%;
+    left: 35%;
+    margin-left: 14px;
+    padding: 30px;
+    box-shadow: 0px 0px 10px grey;
+    width: 30%;
+}
+.submit-btn{
+    justify-content: center;
+    margin: 10px auto;
+}
+h3{
+    text-align: center;
+    margin-top: 15px;
+}
