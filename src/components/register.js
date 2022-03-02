@@ -26,12 +26,7 @@ export default function Register(){
     // onclick  
     const handleOnclick = () =>{
         console.log('---')
-        // if(name.length!=0 || email.length!=0 || password.length!=0){
-        //     swal('registration','Enter Required detials ','error');
-        // } 
-        // else{
-        //     swal('Registratiton','Successfully done ','success');
-        // } 
+
           
 
         if(!name){
@@ -70,8 +65,19 @@ export default function Register(){
                 Emailaddress:email, 
                 password:password,
             } 
-            localStorage.setItem('New_user', JSON.stringify(data))
-            history.push('/data');
+            const usersList= localStorage.getItem('usersList') ? JSON.parse(localStorage.getItem('usersList')):[]; 
+            console.log("----------------usersList------before--------",usersList);
+            usersList.push(data); 
+            console.log("----------------usersList------after--------",usersList);
+
+            localStorage.setItem('usersList',JSON.stringify(usersList)) 
+            localStorage.setItem('New_user', JSON.stringify(data)) 
+            async function d(){
+                await(localStorage.setItem('Authentication',true))
+               }; 
+            d();
+
+            history.push('/data'); 
         } 
         
        

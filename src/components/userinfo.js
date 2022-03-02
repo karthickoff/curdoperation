@@ -13,7 +13,8 @@ export default function Userinfo() {
     const [primarylanguage,setPrimarylanguage]=useState(false); 
     const [secondarylanguage,setSecondarylanguage]= useState(false); 
     const [optionallanguage,setOptionallanguage] =useState(false); 
-    const [status,setStatus] =useState(false);
+    const [status,setStatus] =useState(false); 
+    const [edit,setEdit] =useState(false);
 
     const handleCalendarClose = () => console.log("Calendar closed");
     const handleCalendarOpen = () => console.log("Calendar opened"); 
@@ -55,7 +56,8 @@ export default function Userinfo() {
         }
         else{
 
-        
+        const personDetialslist=localStorage.getItem('personal-info')? JSON.parse(localStorage.getItem('personal-info')):[]; 
+
         const userData={
             "name":name,
             "age":parseInt(age), 
@@ -66,12 +68,15 @@ export default function Userinfo() {
             "optional_language":optionallanguage,
             "date_of_birth":date
         } 
-        console.log(userData);  
-        localStorage.setItem('personal-info',JSON.stringify(userData))
+        console.log(personDetialslist.push(userData));  
+        localStorage.setItem('personal-info',JSON.stringify(personDetialslist))
         alert("Data Has Been Added Successfully ")
     }
         console.log("name",name," age",age,parseInt(age)," gender ",gender,"status ",status);
         // console.log("primary lang",primarylanguage,"sec lang",secondarylanguage,"optio ",optionallanguage)
+    }
+    const editData = () =>{
+        setEdit(true);
     }
     return(
         <div> 
@@ -81,34 +86,36 @@ export default function Userinfo() {
             <form>
   <div className="form-group">
     <label for="exampleInputEmail1">Name</label>
-    <input type="text" className="form-control" name="username" aria-describedby="emailHelp" placeholder="Enter Name" onChange={handleOnchange} value={name}/>
+    {edit ?<input type="text" className="form-control" name="username" aria-describedby="emailHelp" placeholder="Enter Name" onChange={handleOnchange} value={name} />:<p></p>}
   </div>
   <div className="form-group">
     <label for="exampleInputEmail1">Age</label>
-    <input type="text" className="form-control" name="age" aria-describedby="emailHelp" placeholder="Enter Age" onChange={handleOnchange} value={age}/>
+    {edit ?<input type="text" className="form-control" name="age" aria-describedby="emailHelp" placeholder="Enter Age" onChange={handleOnchange} value={age}/>:<p></p>}
   </div>
   <div >
     <label for="exampleInputEmail1">Date Of Birth</label>
-    <DatePicker
+    {edit ? <DatePicker
       selected={date}
       onChange={(date) => setDate(date)}
       onCalendarClose={handleCalendarClose}
       onCalendarOpen={handleCalendarOpen}
-    />
+    />:<p></p>}
   </div> 
   <div className="form-group"> 
   <label for="">Gender </label> 
-  <div>
+  <div>  {edit ?
     <select name="gender" value={gender}  onChange={handleOnchange}>
+        
         <option value="Male">Male</option>
         <option value="Female">Female</option>
-    </select>
+    </select>:<p></p>}
   </div>
   
 
   </div> 
  <div>
   <label for="exampleInputEmail1">languages known </label>  
+  {edit?
   <div> 
       <div>
       <input type="checkbox" id="topping" name="primarylanguage" value={primarylanguage} onChange={handleOnchange}/>English
@@ -123,25 +130,28 @@ export default function Userinfo() {
 
       </div>
 
-  </div>
+  </div>:
+  <p></p>}
 
  </div>
  <div>
      <label>Status</label> 
+     {edit?
      <div>
      <label className="switch">
             <input type="checkbox" name="status" onChange={handleOnchange} value={status}/>
             <span className="slider round"></span>
 </label>
-     </div>
+     </div>:<p></p>}
  </div>
 
  
 </form> 
 <div className="btn-area">
 <button className="btn btn-primary" onClick={saveData}>save</button> 
-<Link to="/edituserinfo">
-<button className="btn btn-primary" >Edit</button></Link>
+{/* <Link to="/edituserinfo"> */}
+<button className="btn btn-primary"  onClick={editData}>Edit</button>
+{/* </Link> */}
 </div>
 </div> 
 

@@ -4,7 +4,9 @@ import Logout from './logout';
 function ListData() { 
     var [name,setName]=useState('');    
     const [newarr,setNewArr]=useState([]);
-    var totatl=[];
+    var totatl=[]; 
+    const auth=localStorage.getItem('Authentication'); 
+    
     const handleOnchange =(e) =>{
       
         setName(e.target.value)
@@ -26,7 +28,6 @@ function ListData() {
         setNewArr(totatl);
 
     }
-
     return( 
         <div> 
             <Logout/>

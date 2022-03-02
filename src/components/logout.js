@@ -10,6 +10,8 @@ export default function Logout(){
     const handleLogout = () =>{
         // user_detials
         localStorage.removeItem('user_detials');
+        localStorage.removeItem('current_user'); 
+        localStorage.removeItem('Authentication');
     }
     return(
         <div>

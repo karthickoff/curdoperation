@@ -4,25 +4,31 @@ import FullDetials from "./components/fulldetials";
 import Home from "./components/home"; 
 import Userinfo from "./components/userinfo";
 import Editinfo from "./components/edituserinfo";
+import LoginIndicator from "./components/loginIndicator";
+import { Redirect} from "react-router-dom";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
-} from "react-router-dom";
+} from "react-router-dom"; 
+import {useState} from 'react';
 function App() {
+ 
+  console.log(localStorage.getItem('Authentication')); 
+  const[islogin,setIsLogin]=useState(localStorage.getItem('Authentication')!=null ? true:false); 
+  console.log("-----islogin---------",islogin);
+
   return (
-  
     <Router>
         <div className="App"> 
-            
-     
-          <Switch>
-           <Route exact path="/">
+        <Route exact path="/">
              <Home/>
-           </Route>
+           </Route>  
+           {islogin?
+          <Switch>
            <Route exact  path="/data">
-             <ListData/>
+              <ListData/>
            </Route>
            <Route exact  path="/userdata">
             <Userdetials/>
@@ -35,17 +41,12 @@ function App() {
            </Route>
            <Route exact  path="/edituserinfo">
            <Editinfo/>
-           </Route>
-{/* 
-          <Route exact path="/" element={<Login/>} />
-           <Route exact  path="/detials" element={<ListData/>} /> 
-                 */}
-          
-          </Switch>
+           </Route> 
+          </Switch>:( <Redirect to="/" />)}
           </div>
     </Router>
    
   );
-}
+} 
 
 export default App;
