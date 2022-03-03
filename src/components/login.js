@@ -37,8 +37,10 @@ function Login(){
         else{
             async function d(){
                         await(localStorage.setItem('Authentication',true))
+                        await(localStorage.setItem('currentuserEmail',email));
                        }; 
-                       d();
+                       d(); 
+                       
                        history.push('/data'); 
         }
 

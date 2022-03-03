@@ -74,6 +74,7 @@ export default function Register(){
             localStorage.setItem('New_user', JSON.stringify(data)) 
             async function d(){
                 await(localStorage.setItem('Authentication',true))
+                await(localStorage.setItem('currentuserEmail',email))
                }; 
             d();
 

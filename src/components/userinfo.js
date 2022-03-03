@@ -1,20 +1,58 @@
 import "../styles/userinfo.css";
-import React, { useState } from "react"; 
+import React, { useEffect, useState } from "react"; 
 import DatePicker from "react-datepicker";  
 import "react-datepicker/dist/react-datepicker.css"; 
 import { Link } from "react-router-dom"; 
+import { useHistory } from 'react-router-dom';
 import Logout from "./logout"; 
 
 export default function Userinfo() {
-    const [date, setDate] = useState(new Date()); 
-    const [name,setName]  = useState("") 
-    const [age,setAge]    = useState("")
-    const [gender,setGender] =useState("Male")   
-    const [primarylanguage,setPrimarylanguage]=useState(false); 
-    const [secondarylanguage,setSecondarylanguage]= useState(false); 
-    const [optionallanguage,setOptionallanguage] =useState(false); 
-    const [status,setStatus] =useState(false); 
-    const [edit,setEdit] =useState(false);
+   
+    const existingUser=localStorage.getItem('currentuserEmail');  
+    var infoList=JSON.parse(localStorage.getItem('personal-info')); 
+    console.log(infoList);  
+    var existingResut={};
+    infoList.map((data) =>{
+        if(data.usermail==existingUser){
+            existingResut=data;
+           console.log(data); 
+        }
+    }) 
+    console.log("------------result----------",existingResut);
+
+    const existingUserData=existingResut.info;  
+    // console.log(existingUserData.date_of_birth);
+    const history = useHistory();
+    // const d=new Date(existingUserData.date_of_birth?existingUserData.date_of_birth:"") ; 
+    const [date, setDate] = useState(existingUserData?new Date(existingUserData.date_of_birth):new Date()); 
+    const [name,setName]  = useState(existingUserData?existingUserData.name:"") 
+    const [age,setAge]    = useState(existingUserData?existingUserData.age:"")
+    const [gender,setGender] =useState(existingUserData?existingUserData.Gender:"Male")   
+    const [primarylanguage,setPrimarylanguage]=useState(existingUserData?existingUserData.primary_language:false) 
+    const [secondarylanguage,setSecondarylanguage]= useState(existingUserData?existingUserData.secondary_language:false) 
+    const [optionallanguage,setOptionallanguage] =useState(existingUserData?existingUserData.optional_language:false)
+    const [status,setStatus] =useState(existingUserData?existingUserData.status:false); 
+    const [edit,setEdit] =useState(false); 
+    const [email,setEmail] =useState(existingUserData?existingUserData.email:"");   
+    console.log("dateeeee-",date)
+    // const dupDate=date;
+    // const dupDate = (date).toString().split('T')[0]; 
+    // console.log("--------dupDate---------",dupDate);
+    useEffect(() =>{
+        
+        // existingUser ? alert("user exits"):alert("New user"); 
+        if(existingUser){
+            // alert(existingUser)  
+            // setPrimarylanguage(existingUserData.primary_language);
+            //  setStatus(existingUserData.status) 
+            // setEdit(true)
+        } 
+        else{
+            alert("New user")
+        }
+        
+
+    },[])
 
     const handleCalendarClose = () => console.log("Calendar closed");
     const handleCalendarOpen = () => console.log("Calendar opened"); 
@@ -41,9 +79,13 @@ export default function Userinfo() {
                 break; 
             case 'optionallanguage': 
                 setOptionallanguage(!optionallanguage); 
-                break 
+                break  
+            case 'email' :
+                setEmail(e.target.value); 
+                break
             case 'status':
-                    setStatus(!status); 
+                    setStatus(!status);   
+                    console.log(status,"inside the switch");
                     break
 
 
@@ -58,21 +100,46 @@ export default function Userinfo() {
 
         const personDetialslist=localStorage.getItem('personal-info')? JSON.parse(localStorage.getItem('personal-info')):[]; 
 
-        const userData={
+        const userData={ 
+            usermail:email,  
+            info:{
             "name":name,
+            "email":email,
             "age":parseInt(age), 
             "Gender":gender, 
             "status":status , 
             "primary_language":primarylanguage,
             "secondary_language":secondarylanguage,
             "optional_language":optionallanguage,
-            "date_of_birth":date
+            "date_of_birth":date.toString()
+            }
         } 
-        console.log(personDetialslist.push(userData));  
+        if(Object.keys(existingResut).length!==0){
+            console.log("------------existingResut-----------",existingResut);
+            console.log(" perosns list ",personDetialslist); 
+            var newPersonList=personDetialslist.map((data) =>{
+                if(data.usermail==existingUser){
+                    return userData
+                } 
+                else{
+                    return data
+                }
+            }) 
+            alert("person list updated")
+            localStorage.setItem('personal-info',JSON.stringify(newPersonList))
+
+
+        } 
+        else{
+        alert("new Data Has Been Added Successfully ") 
+        personDetialslist.push(userData); 
         localStorage.setItem('personal-info',JSON.stringify(personDetialslist))
-        alert("Data Has Been Added Successfully ")
-    }
-        console.log("name",name," age",age,parseInt(age)," gender ",gender,"status ",status);
+
+
+        }
+    } 
+     history.push('/userinfo');
+        // console.log("name",name," age",age,parseInt(age)," gender ",gender,"status ",status);
         // console.log("primary lang",primarylanguage,"sec lang",secondarylanguage,"optio ",optionallanguage)
     }
     const editData = () =>{
@@ -86,11 +153,17 @@ export default function Userinfo() {
             <form>
   <div className="form-group">
     <label for="exampleInputEmail1">Name</label>
-    {edit ?<input type="text" className="form-control" name="username" aria-describedby="emailHelp" placeholder="Enter Name" onChange={handleOnchange} value={name} />:<p></p>}
+    {edit ?
+    <input type="text" className="form-control" name="username" aria-describedby="emailHelp" placeholder="Enter Name" onChange={handleOnchange} value={name} />
+    :<p>{name}</p>}
+  </div>
+  <div className="form-group">
+    <label for="exampleInputEmail1">Email</label>
+    {edit  ?<input type="text" className="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter Email" onChange={handleOnchange} value={email}/>:<p>{email}</p>}
   </div>
   <div className="form-group">
     <label for="exampleInputEmail1">Age</label>
-    {edit ?<input type="text" className="form-control" name="age" aria-describedby="emailHelp" placeholder="Enter Age" onChange={handleOnchange} value={age}/>:<p></p>}
+    {edit ?<input type="text" className="form-control" name="age" aria-describedby="emailHelp" placeholder="Enter Age" onChange={handleOnchange} value={age}/>:<p>{age}</p>}
   </div>
   <div >
     <label for="exampleInputEmail1">Date Of Birth</label>
@@ -99,7 +172,8 @@ export default function Userinfo() {
       onChange={(date) => setDate(date)}
       onCalendarClose={handleCalendarClose}
       onCalendarOpen={handleCalendarOpen}
-    />:<p></p>}
+      maxDate={new Date()}
+    />:<p>{date.toString()}</p>}
   </div> 
   <div className="form-group"> 
   <label for="">Gender </label> 
@@ -108,30 +182,33 @@ export default function Userinfo() {
         
         <option value="Male">Male</option>
         <option value="Female">Female</option>
-    </select>:<p></p>}
+    </select>:<p>{gender}</p>}
   </div>
   
 
   </div> 
  <div>
-  <label for="exampleInputEmail1">languages known </label>  
+  <label for="exampleInputEmail1">languages known  {primarylanguage}</label>  
   {edit?
   <div> 
-      <div>
-      <input type="checkbox" id="topping" name="primarylanguage" value={primarylanguage} onChange={handleOnchange}/>English
+      <div> 
+          {primarylanguage?<input type="checkbox" id="topping" name="primarylanguage" value={primarylanguage} onChange={handleOnchange} checked/>:<input type="checkbox" id="topping" name="primarylanguage" value={primarylanguage} onChange={handleOnchange}/>}<span>English</span>
+      
 
       </div>
-      <div>
-      <input type="checkbox" id="topping" name="secondarylanguage" value={secondarylanguage} onChange={handleOnchange} />Tamil
+      <div> 
+          {secondarylanguage ? <input type="checkbox" id="topping" name="secondarylanguage" value={secondarylanguage} onChange={handleOnchange} checked /> : <input type="checkbox" id="topping" name="secondarylanguage" value={secondarylanguage} onChange={handleOnchange} />} <span>Tamil</span>
+     
 
       </div> 
       <div>
-      <input type="checkbox" id="topping" name="optionallanguage" value={optionallanguage}  onChange={handleOnchange}/>Telugu
-
+          {optionallanguage ?  <input type="checkbox" id="topping" name="optionallanguage" value={optionallanguage}  onChange={handleOnchange} checked/> :
+            <input type="checkbox" id="topping" name="optionallanguage" value={optionallanguage}  onChange={handleOnchange}/>
+          }<span>Telugu</span> 
       </div>
 
   </div>:
-  <p></p>}
+  <p>{primarylanguage?"English":""}  {secondarylanguage? "Tamil":""} {optionallanguage?"telugu":""}</p>}
 
  </div>
  <div>
@@ -139,10 +216,11 @@ export default function Userinfo() {
      {edit?
      <div>
      <label className="switch">
-            <input type="checkbox" name="status" onChange={handleOnchange} value={status}/>
+            
+        {status ?<input type="checkbox" name="status" onChange={handleOnchange} checked />: <input type="checkbox" name="status" onChange={handleOnchange}/> }
             <span className="slider round"></span>
 </label>
-     </div>:<p></p>}
+     </div>:<p>{status?"active":"Inactive"}</p>}
  </div>
 
  

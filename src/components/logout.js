@@ -12,6 +12,7 @@ export default function Logout(){
         localStorage.removeItem('user_detials');
         localStorage.removeItem('current_user'); 
         localStorage.removeItem('Authentication');
+        localStorage.removeItem('currentuserEmail')
     }
     return(
         <div>
