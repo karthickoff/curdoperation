@@ -1,47 +1,31 @@
 import { useEffect, useState } from 'react';
-import Logout from './logout';
+import { bindActionCreators } from 'redux'
 
-function ListData() { 
-    var [name,setName]=useState('');    
-    const [newarr,setNewArr]=useState([]);
+import {connect} from "react-redux";
+import {removeuserAction} from "./actions/userdata";
+ function ListData(props) { 
     var totatl=[]; 
-    const auth=localStorage.getItem('Authentication'); 
-    
-    const handleOnchange =(e) =>{
-      
-        setName(e.target.value)
-    }
-    const addUser =() =>{  
-        console.log("name",name);
-        setNewArr([...newarr,name])
-        // newArr.push("01");
-        setName('')    
-    }  
-    console.log(newarr); 
+   
+    var [newarr,setNewArr]=useState(props.userReducer.nameList);
+    console.log("---------------list------------",props.userReducer.nameList); 
+    var nameList=props.userReducer.nameList;
     const deleteItem =(e) =>{
-        console.log("dele index",e) 
-        for(var i=0;i<newarr.length;i++){
-            if(newarr[i]!=newarr[e]){
-                totatl.push(newarr[i])
+       
+        console.log("dele index",e)  
+        props.removeUser(e);
+        for(var i=0;i<nameList.length;i++){
+            if(nameList[i]!=nameList[e]){
+                totatl.push(nameList[i])
             }
         } 
-        setNewArr(totatl);
+        console.log("------------total after change",totatl);  
 
     }
     return( 
         <div> 
-            <Logout/>
-            <h3>Enter user Name</h3>
-           <div className="input-group mb-3">
-                <input type="text" name='username' value={name} className="form-control" placeholder="Enter username" aria-label="Recipient's username" aria-describedby="button-addon2" onChange={handleOnchange}style={{width:"50%"}} />
-                <div class="input-group-append">
-                    <button className="btn btn-outline-dark" type="button" id="button-addon2" onClick={addUser}>Add</button>
-                </div>
-            </div>  
-         
             <div>
                 <div><p>Name List :</p></div>
-            <div>{newarr.map((entry,index) =>
+            <div>{nameList.map((entry,index) =>
           <div className='container'> <span>{index+1} </span>{entry} <span> <button type="button" name={index} class="btn  btn-sm" onClick={ () =>deleteItem(index)}><img   src="https://img.icons8.com/windows/50/000000/macos-close.png"/></button> </span></div>
         )}
         </div>
@@ -49,4 +33,17 @@ function ListData() {
         </div>
     )
 } 
-export default ListData; 
+const mapStateToProps = (state) => { 
+    console.log("------------state-----------",state);
+    return {
+       userReducer:state.userReducer
+    };
+ };
+ const mapDispatchToProps = (dispatch) => {
+    // return  {
+    //   addUserName:adduserAction,
+    // }; 
+    return bindActionCreators({ removeUser:removeuserAction},dispatch)
+ };
+ const listUserComponent=connect(mapStateToProps,mapDispatchToProps)(ListData); 
+export default listUserComponent;

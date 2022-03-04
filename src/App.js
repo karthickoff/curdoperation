@@ -4,7 +4,8 @@ import FullDetials from "./components/fulldetials";
 import Home from "./components/home"; 
 import Userinfo from "./components/userinfo";
 import Editinfo from "./components/edituserinfo";
-import LoginIndicator from "./components/loginIndicator";
+import LoginIndicator from "./components/loginIndicator"; 
+import Data from "./components/data";
 import { Redirect} from "react-router-dom";
 import {
   BrowserRouter as Router,
@@ -28,7 +29,7 @@ function App() {
            {islogin?
           <Switch>
            <Route exact  path="/data">
-              <ListData/>
+              <Data/>
            </Route>
            <Route exact  path="/userdata">
             <Userdetials/>

@@ -10,14 +10,17 @@ export default function Userinfo() {
    
     const existingUser=localStorage.getItem('currentuserEmail');  
     var infoList=JSON.parse(localStorage.getItem('personal-info')); 
-    console.log(infoList);  
+    console.log("infoList",infoList);  
     var existingResut={};
-    infoList.map((data) =>{
-        if(data.usermail==existingUser){
-            existingResut=data;
-           console.log(data); 
-        }
-    }) 
+    if(infoList!=null){
+        infoList.map((data) =>{
+            if(data.usermail==existingUser){
+                existingResut=data;
+               console.log(data); 
+            }
+        }) 
+    }
+    
     console.log("------------result----------",existingResut);
 
     const existingUserData=existingResut.info;  
