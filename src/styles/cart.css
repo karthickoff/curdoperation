@@ -1,0 +1,15 @@
+.cartlist{
+    margin: 20px 300px;
+}
+.placeorder-btn{
+    margin: 20px;
+} 
+.btn {
+    margin-right: 3px;
+}
+.emptycart{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}

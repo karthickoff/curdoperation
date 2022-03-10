@@ -5,7 +5,9 @@ import Home from "./components/home";
 import Userinfo from "./components/userinfo";
 import Editinfo from "./components/edituserinfo";
 import LoginIndicator from "./components/loginIndicator"; 
-import Data from "./components/data";
+import Data from "./components/data"; 
+import Items from "./components/items"; 
+import Cart from "./components/cart";
 import { Redirect} from "react-router-dom";
 import {
   BrowserRouter as Router,
@@ -42,6 +44,12 @@ function App() {
            </Route>
            <Route exact  path="/edituserinfo">
            <Editinfo/>
+           </Route> 
+           <Route exact  path="/items">
+           <Items/>
+           </Route> 
+           <Route exact  path="/cart">
+           <Cart/>
            </Route> 
           </Switch>:( <Redirect to="/" />)}
           </div>

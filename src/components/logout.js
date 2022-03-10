@@ -5,8 +5,12 @@ import {
     Route,
     Link
   } from "react-router-dom"; 
-  import profile from "../images/user.png";
-export default function Logout(){ 
+  import profile from "../images/user.png"; 
+  import cartImage from "../images/cart.png"; 
+  import { useSelector } from "react-redux";
+export default function Logout(){  
+    const cartListReducer=useSelector((state)=>state.cartReducer); 
+    const cartCount=cartListReducer.cartListcount
     const handleLogout = () =>{
         // user_detials
         localStorage.removeItem('user_detials');
@@ -22,6 +26,8 @@ export default function Logout(){
                     <div className="menus">
                     <Link className='btn btn-danger'  to="/data">Task1</Link> 
                     <Link className='btn btn-danger'  to="/userdata">Task2</Link> 
+                    <Link className='btn btn-danger'  to="/items">Task3</Link> 
+
                     </div>
                    
                     
@@ -33,6 +39,11 @@ export default function Logout(){
                         <ul class="navbar-nav">
                         <li class="nav-item">
                             <Link class="nav-link" to="/" onClick={handleLogout}>Logout</Link>
+                        </li>
+                        <li class="nav-item cart">
+                           <Link to="/cart"><img src={cartImage} style={{width: "30px",height: "30px",marginTop:"3px",marginRight:"5px"}} /></Link>  
+                          {cartCount ?  <span style={{marginRight:"2px"}}>{cartCount} </span>:"+"}
+                           
                         </li>
                         <li class="nav-item">
                            <Link to="/userinfo"><img src={profile} style={{width: "30px",height: "30px",marginTop:"3px"}} /></Link> 

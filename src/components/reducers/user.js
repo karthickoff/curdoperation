@@ -2,7 +2,6 @@ const intialState={
     nameList:[]
 }
 const userReducer =(state=intialState,action) =>{
-    console.log("reducer--------------",action.payload)
     switch (action.type){
         case 'ADD_USER':
             return{
