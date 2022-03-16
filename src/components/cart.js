@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import Logout from './logout'
-import { additemAction, deleteitemAction, updateitemAction } from "../components/actions/cart";
+import { additemAction, deleteitemAction, updateitemAction, totoalcartAction } from "../components/actions/cart";
 import { useDispatch } from 'react-redux';
 import "../styles/cart.css";
 import watchImage from "../images/watch.jpg";
@@ -16,6 +16,7 @@ function Cart() {
     if (cartList.itemslist) {
         const cartitems = cartList.itemslist;
         const handleAdd = (e) => {
+            dispatch(totoalcartAction(1))
             const existingData = cartitems.find(item => item.id == e.target.id);
             if (existingData) {
 
@@ -24,6 +25,7 @@ function Cart() {
                         name: item.name,
                         id: item.id,
                         count: item.count + 1,
+                        image: item.image
                     }
                     console.log(item);
                     if (item.id == e.target.id) {
@@ -44,6 +46,7 @@ function Cart() {
             // console.log("cart items", cartitems);
         }
         const handleRemove = (e) => {
+            dispatch(totoalcartAction(-1))
 
             const existingData = cartitems.find(item => item.id == e.target.id);
             if (existingData) {
@@ -53,6 +56,7 @@ function Cart() {
                         name: item.name,
                         id: item.id,
                         count: item.count - 1,
+                        image: item.image
                     }
                     console.log(item);
                     if (item.id == e.target.id) {

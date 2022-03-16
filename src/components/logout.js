@@ -8,9 +8,18 @@ import {
 import profile from "../images/user.png";
 import cartImage from "../images/cart.png";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 export default function Logout() {
+    var totoalCartItems = 0;
     const cartListReducer = useSelector((state) => state.cartReducer);
-    const cartCount = cartListReducer.cartListcount
+    const cartItems = cartListReducer.itemslist;
+
+    for (var i = 0; i < cartItems.length; i++) {
+        totoalCartItems += cartItems[i].count;
+    }
+    console.log("---------totoalCartItems----------", totoalCartItems);
+    const cartCount = cartListReducer.cartListcount;
+    // console.log("---------------------cartListReducer.itemslist---------", cartListReducer.itemslist);
     const handleLogout = () => {
         // user_detials
         localStorage.removeItem('user_detials');

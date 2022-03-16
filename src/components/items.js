@@ -4,20 +4,23 @@ import shampoImage from "../images/shampoo1.png";
 import perfumeImage from "../images/perfume.jpg";
 import shoeImage from "../images/shoes.jpg";
 import Logout from './logout';
-import { additemAction } from "../components/actions/cart";
+import { additemAction, totoalcartAction } from "../components/actions/cart";
 import { useSelector, useDispatch } from 'react-redux'
 
 function Items() {
     const dispatch = useDispatch();
     const cartReducer = useSelector((state) => state.cartReducer);
     const cartItems = cartReducer.itemslist;
+    var totoalCount = cartReducer.cartListcount;
     const HandleOnclick = (e) => {
-
+        totoalCount += 1;
         console.log("---------e.target-----", e.target.value);
         // dispatch(additemAction(e.target.name + "Count")); 
         const existingData = cartItems.find(item => item.id === e.target.id);
+
         if (existingData) {
             existingData.count += 1;
+            dispatch(totoalcartAction(1));
             console.log("-------existingData-----", existingData);
             console.log("------cartItems-----------", cartItems);
         }
@@ -27,7 +30,8 @@ function Items() {
                 name: e.target.name,
                 id: e.target.id,
                 count: 1,
-                image: e.target.value
+                image: e.target.value,
+                // totalCount: totoalCount,
 
             }
             dispatch(additemAction(data));
@@ -48,7 +52,7 @@ function Items() {
                             <div class="card-body">
                                 <h5 class="card-title">Shampoo</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <button class="btn btn-primary" name="shampo" id='1' onClick={HandleOnclick}>Add to Cart</button>
+                                <button class="btn btn-primary" name="shampo" id='1' value={shampoImage} onClick={HandleOnclick}>Add to Cart</button>
                             </div>
                         </div>
                     </div>

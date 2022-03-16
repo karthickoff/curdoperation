@@ -30,6 +30,11 @@ const cartReducer = (state = intialState, action) => {
                 ...state,
                 itemslist: action.payload
             };
+        case 'TOTAL_ITEMS':
+            return {
+                ...state,
+                cartListcount: state.cartListcount + action.payload
+            };
         default:
             return state
 
