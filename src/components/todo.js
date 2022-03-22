@@ -47,11 +47,11 @@ function Todo() {
     const currentuserEmail = (localStorage.getItem('currentuserEmail'));
     const existingToDoList = JSON.parse(localStorage.getItem("userstodolist"));
     const exisitingTODOData = existingToDoList.filter((data) => data.userEmail === currentuserEmail)
-    console.log("--------exisitingTODOData-----+++---", exisitingTODOData[0].todoData);
+    // console.log("--------exisitingTODOData-----+++---", exisitingTODOData[0].todoData);
     const [topic, setTopic] = useState('');
     const [description, setDescription] = useState("");
     const [state, setState] = useState(
-        exisitingTODOData[0].todoData ? exisitingTODOData[0].todoData : intialState
+        exisitingTODOData[0] ? exisitingTODOData[0].todoData : intialState
     )
     const usersToDoList = localStorage.getItem('userstodolist') ? JSON.parse(localStorage.getItem('userstodolist')) : [];
     const handleTodo = () => {
