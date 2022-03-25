@@ -10,6 +10,8 @@ import Items from "./components/items";
 import Cart from "./components/cart";
 import { Redirect } from "react-router-dom";
 import Todo from "./components/todo";
+import Range from "./components/range";
+import Datetask from "./components/datetask";
 import {
   BrowserRouter as Router,
   Switch,
@@ -54,6 +56,12 @@ function App() {
             </Route>
             <Route exact path="/todo">
               <Todo />
+            </Route>
+            <Route exact path="/range">
+              <Range />
+            </Route>
+            <Route exact path="/datetask">
+              < Datetask />
             </Route>
           </Switch> : (<Redirect to="/" />)}
       </div>
