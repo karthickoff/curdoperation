@@ -37,6 +37,9 @@ export default function Logout() {
                         <Link className='btn btn-danger' to="/userdata">Task2</Link>
                         <Link className='btn btn-danger' to="/items">Task3</Link>
                         <Link className='btn btn-danger' to="/todo">Task4</Link>
+                        <Link className='btn btn-danger' to="/range">Task5</Link>
+                        <Link className='btn btn-danger' to="/datetask">Task6</Link>
+
 
 
                     </div>
