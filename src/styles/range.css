@@ -6,3 +6,12 @@
     font-size: 20px;
     font-weight: 500;
 }
+.rangearea
+{
+    box-shadow: 0px 0px 10px grey;
+    /* margin: 100px 102px; */
+    width: 600px;
+    /* border: 1px solid; */
+    padding: 21px;
+    margin-top: 91px;
+}

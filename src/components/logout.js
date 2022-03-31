@@ -17,6 +17,7 @@ export default function Logout() {
     for (var i = 0; i < cartItems.length; i++) {
         totoalCartItems += cartItems[i].count;
     }
+
     console.log("---------totoalCartItems----------", totoalCartItems);
     const cartCount = cartListReducer.cartListcount;
     // console.log("---------------------cartListReducer.itemslist---------", cartListReducer.itemslist);
@@ -33,12 +34,12 @@ export default function Logout() {
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <a class="navbar-brand" href="#">Data Site</a>
                     <div className="menus">
-                        <Link className='btn btn-danger' to="/data">Task1</Link>
-                        <Link className='btn btn-danger' to="/userdata">Task2</Link>
-                        <Link className='btn btn-danger' to="/items">Task3</Link>
-                        <Link className='btn btn-danger' to="/todo">Task4</Link>
-                        <Link className='btn btn-danger' to="/range">Task5</Link>
-                        <Link className='btn btn-danger' to="/datetask">Task6</Link>
+                        <Link className='btn btn-danger' to="/data">Data</Link>
+                        <Link className='btn btn-danger' to="/userdata">UserInfo</Link>
+                        <Link className='btn btn-danger' to="/items">Items</Link>
+                        <Link className='btn btn-danger' to="/todo">Totdo</Link>
+                        <Link className='btn btn-danger' to="/range">Range</Link>
+                        <Link className='btn btn-danger' to="/datetask">Date</Link>
 
 
 
