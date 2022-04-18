@@ -9,6 +9,9 @@ import {
 import "../styles/login.css";
 import truckImg from "../images/truck.png";
 import buildImg from "../images/buildings.png";
+import userIcon from "../images/usericon.png";
+import emailIcon from "../images/emailicon.png";
+import Logo from "../images/elearning.png";
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -48,40 +51,30 @@ function Login() {
         }
 
 
-        //    if(email == user.Emailaddress && password==user.password){
-        //        async function d(){
-        //         await(localStorage.setItem('Authentication',true))
-        //        }; 
-        //        d();
-        //        localStorage.setItem('current_user',JSON.stringify(user));
-        //        history.push('/data');  
-        //     setTimeout(() => {
-        //         // history.push('/data')
-        //     }, 1000); 
-        //     // window.location.href="/data"
-        //     //    window.BeforeUnloadEvent()
 
-        //    }  
 
     }
     return (
-        <div className='container'>
+        <div className='container login'>
             <div className='Loginarea'>
+                <div className='logoarea'>
+                    <img src={Logo} />
+                </div>
                 <h3 style={{ textAlign: "center" }}>Login </h3>
 
                 <form>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <label for="exampleInputEmail1" class="form-label">Email address</label> <img className='icons' src={userIcon} />
                         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="emailid" value={email} onChange={handleOnchange} />
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <label for="exampleInputPassword1" class="form-label">Password</label> <img className='icons' src={emailIcon} />
                         <input type="password" class="form-control" id="exampleInputPassword1" name="password" value={password} onChange={handleOnchange} />
                     </div>
 
                     <button type="button" class="btn btn-secondary" onClick={handleOnclick}>submit</button>
                     <div>
-
+                        <span> New User Regsiter Here -</span> <Link to="/register" className='btn btn-outline-primary'>Register</Link>
                     </div>
 
                 </form>

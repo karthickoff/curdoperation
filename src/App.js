@@ -12,6 +12,8 @@ import { Redirect } from "react-router-dom";
 import Todo from "./components/todo";
 import Range from "./components/range";
 import Datetask from "./components/datetask";
+import Login from "./components/login";
+import Register from "./components/register";
 import {
   BrowserRouter as Router,
   Switch,
@@ -29,7 +31,10 @@ function App() {
     <Router>
       <div className="App">
         <Route exact path="/">
-          <Home />
+          <Login />
+        </Route>
+        <Route exact path="/register">
+          <Register />
         </Route>
         {islogin ?
           <Switch>
